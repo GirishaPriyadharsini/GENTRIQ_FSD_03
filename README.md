@@ -14,15 +14,15 @@ This web application allows users to browse events, view details, book tickets, 
 
 ### User Dashboard
 
-![User Dashboard](screenshots/user-dashboard-1.png)
+![User Dashboard](screenshots/userdashboard1.png)
 
 ### Events Listing Page
 
-![Events Page](screenshots/user-dashboard-2.png)
+![Events Page](screenshots/userdashboard2.png)
 
 ### Event details Panel
 
-![Event details](screenshots/event-details.png)
+![Event details](screenshots/eventdetails.png)
 
 ### Admin Panel
 
