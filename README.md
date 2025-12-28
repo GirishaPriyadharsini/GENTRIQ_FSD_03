@@ -1,5 +1,5 @@
 
-# 🎟️ Online Event Booking System
+# Online Event Booking System
 
 A full-stack **Online Event Booking System** developed as part of **Task 3**.
 This web application allows users to browse events, view details, book tickets, manage bookings, and provides an admin panel for managing events and users with secure authentication.
@@ -12,17 +12,22 @@ This web application allows users to browse events, view details, book tickets, 
 
 ![Home Page](screenshots/home.png)
 
-### Events Listing Page
-
-![Events Page](screenshots/events.png)
-
 ### User Dashboard
 
-![User Dashboard](screenshots/dashboard.png)
+![User Dashboard](screenshots/user-dashboard-1.png)
+
+### Events Listing Page
+
+![Events Page](screenshots/user-dashboard-2.png)
+
+### Event details Panel
+
+![Event details](screenshots/event-details.png)
 
 ### Admin Panel
 
 ![Admin Panel](screenshots/admin.png)
+
 
 ---
 
