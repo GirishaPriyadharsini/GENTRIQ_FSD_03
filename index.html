@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Booking system - Book Events Online</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="container">
+        <a href="index.html" class="logo">Event Booking system</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="#events">Events</a>
+            <a href="#categories">Categories</a>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="register.html" class="btn-register">Register</a>
+                <a href="adminlogin.html" class="btn-login">Admin</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Discover & Book Amazing Events</h1>
+            <p>Concerts, workshops, conferences, sports and more - all in one place</p>
+            <a href="#events" class="btn-primary">Browse Events</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="events" class="events-section">
+            <h2>Upcoming Events</h2>
+            <div class="events-grid" id="events-container">
+                <!-- Events will be loaded here by JavaScript -->
+                <div class="loading">Loading events...</div>
+            </div>
+        </section>
+
+        <section id="categories" class="categories-section">
+            <h2>Event Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <i class="fas fa-music"></i>
+                    <h3>Concerts</h3>
+                    <p>Live music performances</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Workshops</h3>
+                    <p>Learning & skill development</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Conferences</h3>
+                    <p>Business & professional events</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-running"></i>
+                    <h3>Sports</h3>
+                    <p>Games & tournaments</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Event Booking system. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

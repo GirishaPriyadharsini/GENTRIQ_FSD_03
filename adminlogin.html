@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Event Booking System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-header">
+            <h2><i class="fas fa-lock"></i> Admin Panel</h2>
+            <p>Event Booking System Management</p>
+        </div>
+        
+        <div class="login-body-content">
+            <ul class="nav nav-tabs" id="adminTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button">Login</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button">Register</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="adminTabContent">
+                <!-- Login Tab -->
+                <div class="tab-pane fade show active" id="login" role="tabpanel">
+                    <div id="loginAlert" class="alert d-none"></div>
+                    
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="email" class="form-control with-icon" id="loginEmail" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="password" class="form-control with-icon" id="loginPassword" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-login" id="loginBtn">
+                            <span id="loginBtnText">Login</span>
+                            <span id="loginSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Register Tab -->
+                <div class="tab-pane fade" id="register" role="tabpanel">
+                    <div id="registerAlert" class="alert d-none"></div>
+                    
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control with-icon" id="registerName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="email" class="form-control with-icon" id="registerEmail" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <input type="tel" class="form-control with-icon" id="registerPhone">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="password" class="form-control with-icon" id="registerPassword" required>
+                            </div>
+                            <div class="form-text">Must be at least 8 characters</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="password" class="form-control with-icon" id="registerConfirmPassword" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-login" id="registerBtn">
+                            <span id="registerBtnText">Create Admin Account</span>
+                            <span id="registerSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <a href="/">← Back to Main Site</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Handle Login
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const alertDiv = document.getElementById('loginAlert');
+            const btn = document.getElementById('loginBtn');
+            const btnText = document.getElementById('loginBtnText');
+            const spinner = document.getElementById('loginSpinner');
+            
+            // Reset alert
+            alertDiv.className = 'alert d-none';
+            alertDiv.textContent = '';
+            
+            // Validate
+            if (!email || !password) {
+                showAlert('Please fill in all fields', 'danger', 'loginAlert');
+                return;
+            }
+            
+            // Show loading
+            btn.disabled = true;
+            btnText.textContent = 'Logging in...';
+            spinner.classList.remove('d-none');
+            
+            try {
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Store token
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminUser', JSON.stringify(data.user));
+                    
+                    // Show success message
+                    showAlert('Login successful! Redirecting...', 'success', 'loginAlert');
+                    
+                    // Redirect to admin dashboard
+                    setTimeout(() => {
+                        window.location.href = '/admin.html';
+                    }, 1000);
+                } else {
+                    throw new Error(data.error || 'Login failed');
+                }
+            } catch (error) {
+                showAlert(error.message, 'danger', 'loginAlert');
+            } finally {
+                // Reset button
+                btn.disabled = false;
+                btnText.textContent = 'Login';
+                spinner.classList.add('d-none');
+            }
+        });
+        
+        // Handle Registration
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            const alertDiv = document.getElementById('registerAlert');
+            const btn = document.getElementById('registerBtn');
+            const btnText = document.getElementById('registerBtnText');
+            const spinner = document.getElementById('registerSpinner');
+            
+            // Reset alert
+            alertDiv.className = 'alert d-none';
+            alertDiv.textContent = '';
+            
+            // Validate
+            if (!name || !email || !password || !confirmPassword) {
+                showAlert('Please fill in all required fields', 'danger', 'registerAlert');
+                return;
+            }
+            
+            if (password.length < 8) {
+                showAlert('Password must be at least 8 characters', 'danger', 'registerAlert');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showAlert('Passwords do not match', 'danger', 'registerAlert');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showAlert('Please enter a valid email address', 'danger', 'registerAlert');
+                return;
+            }
+            
+            // Show loading
+            btn.disabled = true;
+            btnText.textContent = 'Creating account...';
+            spinner.classList.remove('d-none');
+            
+            try {
+                const response = await fetch('/api/admin/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password, phone })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Show success message
+                    showAlert('Admin account created successfully! Please login.', 'success', 'registerAlert');
+                    
+                    // Clear form
+                    document.getElementById('registerForm').reset();
+                    
+                    // Switch to login tab
+                    const loginTab = new bootstrap.Tab(document.getElementById('login-tab'));
+                    loginTab.show();
+                    
+                } else {
+                    throw new Error(data.error || 'Registration failed');
+                }
+            } catch (error) {
+                showAlert(error.message, 'danger', 'registerAlert');
+            } finally {
+                // Reset button
+                btn.disabled = false;
+                btnText.textContent = 'Create Admin Account';
+                spinner.classList.add('d-none');
+            }
+        });
+        
+        // Helper function to show alerts
+        function showAlert(message, type, alertId) {
+            const alertDiv = document.getElementById(alertId);
+            alertDiv.textContent = message;
+            alertDiv.className = `alert alert-${type}`;
+            
+            // Auto-hide success alerts after 3 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    alertDiv.classList.add('d-none');
+                }, 3000);
+            }
+        }
+        
+        // Check if already logged in
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('adminToken');
+            if (token) {
+                // Verify token
+                fetch('/api/admin/verify', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.valid) {
+                        // Already logged in, redirect to dashboard
+                        window.location.href = '/admin.html';
+                    }
+                })
+                .catch(() => {
+                    // Token invalid, clear storage
+                    localStorage.removeItem('adminToken');
+                    localStorage.removeItem('adminUser');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

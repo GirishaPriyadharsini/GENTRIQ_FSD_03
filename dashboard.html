@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Booking system - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Event Booking system</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <div class="user-menu">
+                    <span id="userWelcome">Welcome, User</span>
+                    <button id="logoutBtn" class="btn-logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Dashboard Header -->
+        <header class="dashboard-header">
+            <h1>My Dashboard</h1>
+            <button id="refreshBtn" class="btn-refresh">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+        </header>
+
+        <!-- Statistics Section -->
+        <section class="stats-section">
+            <h2>Overview</h2>
+            <div class="stats-grid" id="dashboardStats">
+                <!-- Stats will be loaded here -->
+                <div class="loading">Loading statistics...</div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section class="events-section">
+            <div class="section-header">
+                <h2>Browse & Book Events</h2>
+                <div class="filters">
+                    <input type="text" id="searchInput" placeholder="Search events..." class="search-input">
+                </div>
+            </div>
+            <div class="events-grid" id="eventsContainer">
+                <!-- Events will be loaded here -->
+                <div class="loading">Loading events...</div>
+            </div>
+        </section>
+
+        <!-- Bookings Section -->
+        <section class="bookings-section">
+            <h2>My Bookings</h2>
+            <div class="bookings-container" id="bookingsContainer">
+                <!-- Bookings will be loaded here -->
+                <div class="loading">Loading bookings...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Event Booking system. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

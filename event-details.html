@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details - Event Booking system</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/eventdetail.css">
+ </head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a href="dashboard.html" class="nav-brand">
+                <i class="fas fa-calendar-alt"></i>
+                Event Booking system Dashboard
+            </a>
+            <div class="nav-links">
+                <button class="back-button" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+            </div>
+        </nav>
+
+        <div class="event-details-container">
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                Loading event details...
+            </div>
+            <div id="error" class="error" style="display: none;"></div>
+            
+            <!-- Event details will be dynamically inserted here -->
+            <div id="eventDetails" style="display: none;">
+                <!-- Content will be added by JavaScript -->
+            </div>
+        </div>
+    </div>
+    <script src="js/event.js"></script>
+</body>
+</html>
