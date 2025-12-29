@@ -154,15 +154,6 @@ The complete SQL schema is included in
 
 Create a `.env` file in the root directory:
 
-```env
-JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
-PORT=3000
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=event_booking_system
-```
-
 ---
 
 ## ▶ How to Run the Project
