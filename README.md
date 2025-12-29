@@ -152,8 +152,6 @@ The complete SQL schema is included in
 
 ## ⚙️ Environment Variables
 
-## Environment Variables
-
 Create a `.env` file in the root directory and add the following:
 
 ```env
@@ -166,6 +164,7 @@ PORT=3000
 
 
 ---
+```
 
 ## ▶ How to Run the Project
 
