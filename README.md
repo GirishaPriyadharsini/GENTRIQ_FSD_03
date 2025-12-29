@@ -171,8 +171,9 @@ PORT=3000
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/event-booking-system.git
-cd event-booking-system
+git clone https://github.com/GirishaPriyadharsini/GENTRIQ_FSD_03.git
+cd GENTRIQ_FSD_03
+
 ```
 
 ### 2️⃣ Install Dependencies
