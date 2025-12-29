@@ -160,7 +160,7 @@ Create a `.env` file in the root directory and add the following:
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=your_db_password
-DB_NAME=productivity_app
+DB_NAME=event_booking_system
 JWT_SECRET=your_jwt_secret
 PORT=3000
 
